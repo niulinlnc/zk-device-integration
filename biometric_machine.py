@@ -10,6 +10,10 @@ class account_move_line_custom_dos(models.Model):
     _inherit = 'hr.employee'
     machine_id = fields.Integer(string='Machine Id')
 
+    _sql_constraints = [
+    ('machine_id', 'unique(machine_id)', 'This ID already exists!')
+    ]
+
 class bio_machine_users(models.Model):
     _name = 'bio.machine.users'
     user_id = fields.Integer('USER ID')
