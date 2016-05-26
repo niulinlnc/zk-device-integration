@@ -6,6 +6,10 @@ from zklib import zkconst
 from openerp import _
 from openerp.exceptions import Warning
 
+class account_move_line_custom_dos(models.Model):
+    _inherit = 'hr.employee'
+    machine_id = fields.Integer(string='Machine Id')
+
 class bio_machine_users(models.Model):
     _name = 'bio.machine.users'
     user_id = fields.Integer('USER ID')
@@ -38,7 +42,6 @@ class biometric_machine(models.Model):
             users = zk.getUser()
             timesheet_obj = self.env['bio.machine.users']
             timesheet_obj.search([]).unlink()
-            print timesheet_obj
             if (users):
                 for user in users:
                     print users[user][1]
@@ -47,7 +50,7 @@ class biometric_machine(models.Model):
                     else:
                         level = 'User'
 
-                    employee_id = self.env['hr.employee'].search([('name_related','=',users[user][1])]).id  
+                    employee_id = self.env['hr.employee'].search([('machine_id','=',users[user][0])]).id  
                     if(employee_id):
                         emp_id = employee_id
                     else: 

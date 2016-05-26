@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+
+    	<record id="hr_employee_custom_latitude_view" model="ir.ui.view">
+            <field name="name">hr_employee_custom_latitude_view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_phone']" position="after">
+                    <label for="machine_id" string="Machine ID"/>
+                    <field name="machine_id"/>
+                </xpath>
+            </field>
+        </record>
+
         <record id="view_biometric_machine_form" model="ir.ui.view">
 		<field name="name">biometric.machine.form</field>
 		<field name="model">biometric.machine</field>
